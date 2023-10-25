@@ -53,24 +53,47 @@ const AddRecipeForm = () => {
   //   }
   // };
 
-  console.log(ingredients[0], ingredients[1], ingredients[2]);
+  const isValidString = (string) => {
+    let regex = /^[a-zA-Z\s]+$/;
+    return regex.test(string);
+  };
+
+  const isValidNum = (num) => {
+    let regex = /^[-+]?(\d*\.\d+|\d+(\.\d*)?)$/;
+    return regex.test(num);
+  };
 
   const formValidation = () => {
+    if (keywords.length === 0 || !isValidString(keywords)) {
+      setKeywordValidation(false);
+    }
+    if (images.length === 0) {
+      setImageValidation(false);
+    }
+    if (steps.length === 0) {
+      setStepValidation(false);
+    }
+    if (recipeName.length === 0 || !isValidString(recipeName)) {
+      setRecipeNameValidation(false);
+    }
+    if (
+      (ingredients[0].length === 0 || !isValidString(ingredients[0].length)) &&
+      (ingredients[1].length === 0 || !isValidNum(ingredients[1])) &&
+      (ingredients[2].length === 0 || !isValidString(ingredients[2]))
+    ) {
+      setIngredientValidation(false);
+    }
     if (
       keywords.length === 0 ||
+      !isValidString(keywords) ||
       images.length === 0 ||
       steps.length === 0 ||
       recipeName.length === 0 ||
-      (ingredients[0].length === 0 &&
-        ingredients[1].length === 0 &&
-        ingredients[2].length === 0)
+      !isValidString(recipeName) ||
+      ((ingredients[0].length === 0 || !isValidString(ingredients[0].length)) &&
+        (ingredients[1].length === 0 || !isValidNum(ingredients[1])) &&
+        (ingredients[2].length === 0 || !isValidString(ingredients[2])))
     ) {
-      setKeywordValidation(false);
-      setImageValidation(false);
-      setStepValidation(false);
-      setRecipeNameValidation(false);
-      setIngredientValidation(false);
-
       return false;
     } else {
       setKeywordValidation(true);
@@ -103,7 +126,7 @@ const AddRecipeForm = () => {
           onChange={addName}
         />
         {!recipeNameValidation && (
-          <p style={{ color: "red" }}>Please enter recipe name.</p>
+          <p style={{ color: "red" }}>Please enter valid recipe name.</p>
         )}
       </div>
       <div>
@@ -114,7 +137,9 @@ const AddRecipeForm = () => {
           passData={addKeywords}
         />
         {!keywordValidation && (
-          <p style={{ color: "red" }}>Please add at least one keyword.</p>
+          <p style={{ color: "red" }}>
+            Please add at least one keyword or valid keyword.
+          </p>
         )}
       </div>
       <div>
@@ -129,7 +154,9 @@ const AddRecipeForm = () => {
           passData={addIngredients}
         />
         {!ingredientValidation && (
-          <p style={{ color: "red" }}>Please add at least one ingredients.</p>
+          <p style={{ color: "red" }}>
+            Please add at least one valid ingredients .
+          </p>
         )}
       </div>
       <div>
@@ -140,7 +167,7 @@ const AddRecipeForm = () => {
           passData={addSteps}
         />
         {!stepValidation && (
-          <p style={{ color: "red" }}>Please add at least one step.</p>
+          <p style={{ color: "red" }}>Please add at least one valid step.</p>
         )}
       </div>
       <div>
@@ -151,7 +178,9 @@ const AddRecipeForm = () => {
           passData={addImages}
         />
         {!imageValidation && (
-          <p style={{ color: "red" }}>Please add at least one image link.</p>
+          <p style={{ color: "red" }}>
+            Please add at least one valid image link.
+          </p>
         )}
       </div>
       <div>
