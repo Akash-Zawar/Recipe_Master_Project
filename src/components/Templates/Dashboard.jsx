@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../Organisms/header";
-import Section from "../Organisms/section";
+
+import DisplaySection from "../Organisms/DisplaySection";
 
 const Dashboard = () => {
   return (
     <>
       <Header />
-      <Section />
+      <DisplaySection />
     </>
   );
 };

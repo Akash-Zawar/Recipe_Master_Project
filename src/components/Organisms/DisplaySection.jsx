@@ -1,6 +1,6 @@
 import AddRecipeForm from "./AddRecipeForm";
 
-const Section = () => {
+const DisplaySection = () => {
   return (
     <div className="flex flex-row">
       <div className="bg-sky-400 w-80 h-screen">
@@ -18,4 +18,4 @@ const Section = () => {
   );
 };
 
-export default Section;
+export default DisplaySection;
