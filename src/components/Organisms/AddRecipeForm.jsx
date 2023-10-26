@@ -38,72 +38,45 @@ const AddRecipeForm = () => {
   const addIngredients = (ingredients) => {
     setIngredients(ingredients);
   };
-
-  // const validateIngredients = () => {
-  //   if (
-  //     ingredients[0] !== "" &&
-  //     ingredients[1] !== "" &&
-  //     ingredients[2] !== ""
-  //   ) {
-  //     setIngredientValidation(true);
-  //     return true;
-  //   } else {
-  //     setIngredientValidation(false);
-  //     return false;
-  //   }
-  // };
-
   const isValidString = (string) => {
     let regex = /^[a-zA-Z\s]+$/;
     return regex.test(string);
   };
 
-  const isValidNum = (num) => {
-    let regex = /^[-+]?(\d*\.\d+|\d+(\.\d*)?)$/;
-    return regex.test(num);
-  };
-
   const formValidation = () => {
-    if (keywords.length === 0 || !isValidString(keywords)) {
+    let isValid = true;
+
+    if (keywords.length === 0) {
       setKeywordValidation(false);
+      isValid = false;
     }
     if (images.length === 0) {
       setImageValidation(false);
+      isValid = false;
     }
     if (steps.length === 0) {
       setStepValidation(false);
+      isValid = false;
     }
     if (recipeName.length === 0 || !isValidString(recipeName)) {
       setRecipeNameValidation(false);
+      isValid = false;
     }
-    if (
-      (ingredients[0].length === 0 || !isValidString(ingredients[0].length)) &&
-      (ingredients[1].length === 0 || !isValidNum(ingredients[1])) &&
-      (ingredients[2].length === 0 || !isValidString(ingredients[2]))
-    ) {
+
+    if (ingredients.length === 0) {
       setIngredientValidation(false);
+      isValid = false;
     }
-    if (
-      keywords.length === 0 ||
-      !isValidString(keywords) ||
-      images.length === 0 ||
-      steps.length === 0 ||
-      recipeName.length === 0 ||
-      !isValidString(recipeName) ||
-      ((ingredients[0].length === 0 || !isValidString(ingredients[0].length)) &&
-        (ingredients[1].length === 0 || !isValidNum(ingredients[1])) &&
-        (ingredients[2].length === 0 || !isValidString(ingredients[2])))
-    ) {
-      return false;
-    } else {
+
+    if (isValid) {
       setKeywordValidation(true);
       setImageValidation(true);
       setStepValidation(true);
       setRecipeNameValidation(true);
       setIngredientValidation(true);
-
-      return true;
     }
+
+    return isValid;
   };
 
   const handleSubmit = () => {
@@ -113,6 +86,8 @@ const AddRecipeForm = () => {
       console.log("error");
     }
   };
+
+  console.log({ recipeName, keywords, ingredients, steps, images });
 
   return (
     <div className="flex flex-col gap-4 mx-2 my-2">
@@ -155,7 +130,8 @@ const AddRecipeForm = () => {
         />
         {!ingredientValidation && (
           <p style={{ color: "red" }}>
-            Please add at least one valid ingredients .
+            Please add at least one valid ingredient set (Name, Quantity, and
+            Units).
           </p>
         )}
       </div>

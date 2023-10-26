@@ -1,10 +1,27 @@
 import { useState } from "react";
 
 const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
-  const [inputFields, setInputFields] = useState(["", "", ""]);
+  const [inputFields, setInputFields] = useState([
+    { name: "", quantity: "", units: "" },
+  ]);
 
   const AddInputField = () => {
-    setInputFields([...inputFields, "", "", ""]);
+    setInputFields([...inputFields, { name: "", quantity: "", units: "" }]);
+  };
+
+  const isNameValid = (name) => {
+    const regex = /^[A-Za-z\s]+$/;
+    return regex.test(name);
+  };
+
+  const isQuantityValid = (quantity) => {
+    const regex = /^\d+(\.\d+)?$/;
+    return regex.test(quantity);
+  };
+
+  const isUnitValid = (units) => {
+    const regex = /^[A-Za-z\s]+$/;
+    return regex.test(units);
   };
 
   const removeInputField = (index) => {
@@ -12,6 +29,13 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
     newInputFields.splice(index, 1);
     setInputFields(newInputFields);
     passData(newInputFields);
+  };
+
+  const handleInputChange = (index, fieldName, value) => {
+    const newFields = [...inputFields];
+    newFields[index][fieldName] = value;
+    setInputFields(newFields);
+    passData(newFields);
   };
 
   // console.log({ inputFields });
@@ -29,13 +53,34 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
             <div key={index} className="flex flex-row gap-3  m-2 items-center">
               <input
                 type="text"
-                value={field}
-                placeholder={placeholder[index]}
+                value={field.name}
+                placeholder={placeholder[0]}
                 onChange={(e) => {
-                  const newFields = [...inputFields];
-                  newFields[index] = e.target.value;
-                  setInputFields(newFields);
-                  passData(newFields);
+                  if (isNameValid(e.target.value)) {
+                    handleInputChange(index, "name", e.target.value);
+                  }
+                }}
+                className="h-8 border-solid border-2 border-black w-64"
+              />
+              <input
+                type="text"
+                value={field.quantity}
+                placeholder={placeholder[1]}
+                onChange={(e) => {
+                  if (isQuantityValid(e.target.value)) {
+                    handleInputChange(index, "quantity", e.target.value);
+                  }
+                }}
+                className="h-8 border-solid border-2 border-black w-64"
+              />
+              <input
+                type="text"
+                value={field.units}
+                placeholder={placeholder[2]}
+                onChange={(e) => {
+                  if (isUnitValid(e.target.value)) {
+                    handleInputChange(index, "units", e.target.value);
+                  }
                 }}
                 className="h-8 border-solid border-2 border-black w-64"
               />
