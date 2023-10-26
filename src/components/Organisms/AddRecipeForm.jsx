@@ -17,7 +17,7 @@ const AddRecipeForm = () => {
 
   const [ingredients, setIngredients] = useState([{}]);
   const [ingredientValidation, setIngredientValidation] = useState(true);
-
+  const [print, setPrint] = useState(false);
   const addName = (e) => {
     setRecipeName(e.target.value);
     console.log({ recipeName });
@@ -46,15 +46,18 @@ const AddRecipeForm = () => {
   const formValidation = () => {
     let isValid = true;
 
-    if (keywords.length === 0) {
+    if (
+      keywords.length === 0 ||
+      keywords.some((keyword) => keyword.trim() == "")
+    ) {
       setKeywordValidation(false);
       isValid = false;
     }
-    if (images.length === 0) {
+    if (images.length === 0 || images.some((images) => images.trim() === "")) {
       setImageValidation(false);
       isValid = false;
     }
-    if (steps.length === 0) {
+    if (steps.length === 0 || steps.some((steps) => steps.trim() === "")) {
       setStepValidation(false);
       isValid = false;
     }
@@ -63,7 +66,12 @@ const AddRecipeForm = () => {
       isValid = false;
     }
 
-    if (ingredients.length === 0) {
+    if (
+      ingredients.length === 0 ||
+      ingredients.some((ingredient) => {
+        return !ingredient.name || !ingredient.quantity || !ingredient.units;
+      })
+    ) {
       setIngredientValidation(false);
       isValid = false;
     }
@@ -81,6 +89,7 @@ const AddRecipeForm = () => {
 
   const handleSubmit = () => {
     if (formValidation()) {
+      setPrint(true);
       console.log("Form submitted!");
     } else {
       console.log("error");
@@ -166,6 +175,7 @@ const AddRecipeForm = () => {
           Submit
         </button>
       </div>
+      {/* <div>{print && <p>Name of Recipe: {recipeName}</p>}</div> */}
     </div>
   );
 };
