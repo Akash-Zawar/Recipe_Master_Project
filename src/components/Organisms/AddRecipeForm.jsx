@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddInputFieldType1 from "../Molecules/AddInputFieldType1";
 import AddInputFieldType2 from "../Molecules/AddInputFieldType2";
+import { v4 as uuidv4 } from "uuid";
 
 const AddRecipeForm = () => {
   const [recipeName, setRecipeName] = useState("");
@@ -17,7 +18,16 @@ const AddRecipeForm = () => {
 
   const [ingredients, setIngredients] = useState([{}]);
   const [ingredientValidation, setIngredientValidation] = useState(true);
-  const [print, setPrint] = useState(false);
+
+  const RecipeData = {
+    id: uuidv4(),
+    name: recipeName,
+    keywords: keywords,
+    ingredients: ingredients,
+    steps: steps,
+    images: images,
+  };
+
   const addName = (e) => {
     setRecipeName(e.target.value);
     console.log({ recipeName });
@@ -89,7 +99,9 @@ const AddRecipeForm = () => {
 
   const handleSubmit = () => {
     if (formValidation()) {
-      setPrint(true);
+      const getData = JSON.parse(localStorage.getItem("recipeData")) || [];
+      getData.push(RecipeData);
+      localStorage.setItem("recipeData", JSON.stringify(getData));
       console.log("Form submitted!");
     } else {
       console.log("error");
@@ -175,7 +187,6 @@ const AddRecipeForm = () => {
           Submit
         </button>
       </div>
-      {/* <div>{print && <p>Name of Recipe: {recipeName}</p>}</div> */}
     </div>
   );
 };
