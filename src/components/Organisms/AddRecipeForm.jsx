@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddInputFieldType1 from "../Molecules/AddInputFieldType1";
 import AddInputFieldType2 from "../Molecules/AddInputFieldType2";
 import { v4 as uuidv4 } from "uuid";

@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboard from "./components/Templates/Dashboard.jsx";
 import DisplayRecipe from "./components/Organisms/DisplayRecipe.jsx";
-import Dashboard2 from "./components/Templates/Dashboard copy.jsx";
+
 import DisplayAddRecipeSection from "./components/Organisms/DisplayAddRecipeSection.jsx";
 import DisplayShowRecipeSection from "./components/Organisms/DisplayShowRecipeSection.jsx";
 
@@ -19,11 +19,11 @@ const myRouter = createBrowserRouter([
     element: <DisplayAddRecipeSection />,
   },
   {
-    path: "/show-recipe-list",
+    path: "/recipes",
     element: <DisplayShowRecipeSection />,
   },
   {
-    path: "/show-recipe-list/recipe-details/:id",
+    path: "/recipes/recipe-details/:id",
     element: <DisplayRecipe />,
   },
 ]);

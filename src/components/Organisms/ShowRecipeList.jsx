@@ -6,13 +6,22 @@ const ShowRecipeList = () => {
 
   return (
     <div>
-      {showData.map((field, index) => {
-        return (
-          <Link key={index} to={`/show-recipe-list/recipe-details/${field.id}`}>
-            <li>Recipe Name: {field.name}</li>
-          </Link>
-        );
-      })}
+      <p className="text-xl font-serif">List of recipes:- </p>
+      <div className="flex flex-row flex-wrap gap-3">
+        {showData.map((field, index) => {
+          return (
+            <Link key={index} to={`/recipes/recipe-details/${field.id}`}>
+              <div className="p-4 m-2 bg-slate-300 hover:bg-slate-500 w-52 text-center min-w-full">
+                <img
+                  src="https://toppng.com/uploads/preview/and-blank-effect-transparent-11546868080xgtiz6hxid.png"
+                  alt="blank images"
+                />
+                <p>{field.name}</p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };

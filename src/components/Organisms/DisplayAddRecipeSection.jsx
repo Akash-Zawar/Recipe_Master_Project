@@ -1,18 +1,9 @@
-import { useState } from "react";
 import AddRecipeForm from "./AddRecipeForm";
-import ShowRecipeList from "./ShowRecipeList";
+
 import { Link } from "react-router-dom";
 import Header from "./header";
 
 const DisplayAddRecipeSection = () => {
-  // const [display, setDisplay] = useState(true);
-
-  // const onAddRecipeClick = () => {
-  //   setDisplay(true);
-  // };
-  // const onShowRecipeClick = () => {
-  //   setDisplay(false);
-  // };
   return (
     <>
       <Header />
@@ -21,7 +12,7 @@ const DisplayAddRecipeSection = () => {
           <button className="border-b-2 w-full p-2 bg-sky-700 ">
             Add Recipe
           </button>
-          <Link to="/show-recipe-list">
+          <Link to="/recipes">
             <button className="border-b-2 w-full p-2 hover:bg-sky-700 ">
               Show Recipe
             </button>
