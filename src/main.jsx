@@ -1,26 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+// import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./components/Templates/Dashboard.jsx";
-import DisplayRecipe from "./components/Organisms/DisplayRecipe.jsx";
-
-import DisplayAddRecipeSection from "./components/Organisms/DisplayAddRecipeSection.jsx";
-import DisplayShowRecipeSection from "./components/Organisms/DisplayShowRecipeSection.jsx";
+import DisplayAddRecipeSection from "./components/Organisms/DisplayAddRecipeSection";
+import DisplayRecipe from "./components/Organisms/DisplayRecipe";
+import ListRecipeSection from "./components/Organisms/ListRecipeSection";
+import HomePage from "./components/Templates/HomePage";
+import AboutUs from "./components/Templates/AboutUs";
+import ContactUs from "./components/Templates/ContactUs";
+import AdminDashboard from "./components/Templates/AdminDashboard";
 
 const myRouter = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <Dashboard />,
-  // },
   {
     path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/about-us",
+    element: <AboutUs />,
+  },
+  {
+    path: "/contact-us",
+    element: <ContactUs />,
+  },
+  {
+    path: "/admin-dashboard",
+    element: <AdminDashboard />,
+  },
+  {
+    path: "/add-recipes",
     element: <DisplayAddRecipeSection />,
   },
   {
     path: "/recipes",
-    element: <DisplayShowRecipeSection />,
+    element: <ListRecipeSection />,
   },
   {
     path: "/recipes/recipe-details/:id",

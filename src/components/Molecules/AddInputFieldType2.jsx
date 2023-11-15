@@ -42,15 +42,15 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
 
   return (
     <div>
-      <div className="flex flex-col items-start">
+      <div className="flex gap-4 items-start">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white text-s font-bold py-2 px-4 rounded my-2 px-2 h-9"
+          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white p-1 border border-blue-500 hover:border-transparent rounded h-88"
           onClick={AddInputField}>
           {btnName}
         </button>
-        <div className="flex flex-col gap-2 m-3">
+        <div className="flex flex-col gap-2 ">
           {inputFields.map((field, index) => (
-            <div key={index} className="flex flex-row gap-3  m-2 items-center">
+            <div key={index} className="flex flex-row gap-3 items-center">
               <input
                 type="text"
                 value={field.name}
@@ -60,7 +60,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "name", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-64"
+                className="h-8 border-solid border-2 border-black w-60 p-2"
               />
               <input
                 type="text"
@@ -71,7 +71,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "quantity", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-64"
+                className="h-8 border-solid border-2 border-black w-32 p-2"
               />
               <input
                 type="text"
@@ -82,12 +82,12 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "units", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-64"
+                className="h-8 border-solid border-2 border-black w-32 p-2"
               />
               <button
                 onClick={() => removeInputField(index)}
                 className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white p-1 border border-blue-500 hover:border-transparent rounded h-8">
-                Remove
+                X
               </button>
             </div>
           ))}

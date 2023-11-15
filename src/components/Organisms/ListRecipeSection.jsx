@@ -1,13 +1,13 @@
 import ShowRecipeList from "./ShowRecipeList";
 import { Link } from "react-router-dom";
 import Header from "./header";
-const DisplayShowRecipeSection = () => {
+const ListRecipeSection = () => {
   return (
     <>
       <Header />
       <div className="flex flex-row">
         <div className="bg-sky-400 w-80 h-screen">
-          <Link to="/">
+          <Link to="/add-recipes">
             <button className="border-b-2 w-full p-2 hover:bg-sky-700 ">
               Add Recipe
             </button>
@@ -23,4 +23,4 @@ const DisplayShowRecipeSection = () => {
   );
 };
 
-export default DisplayShowRecipeSection;
+export default ListRecipeSection;

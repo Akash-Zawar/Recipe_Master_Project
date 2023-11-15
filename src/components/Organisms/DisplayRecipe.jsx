@@ -1,8 +1,13 @@
 import { useParams } from "react-router-dom";
+import DisplayRecipeHeader from "./DisplayRecipeComponents/DisplayRecipeHeader";
+import Header from "./header";
+import DisplayIngredient from "./DisplayRecipeComponents/DisplayIngredient";
+import RecipeImages from "./DisplayRecipeComponents/RecipeImages";
+import DisplaySteps from "./DisplayRecipeComponents/DisplaySteps";
 
 const DisplayRecipe = () => {
   const params = useParams();
-  let recipeID = params.id;
+  let recipeID = decodeURIComponent(params.id);
   console.log(recipeID);
 
   const showData = JSON.parse(localStorage.getItem("recipeData")) || [];
@@ -18,11 +23,29 @@ const DisplayRecipe = () => {
 
   return (
     <>
-      <p>Recipe Name: {currentRecipe.name}</p>
+      <div className="bg-slate-100 h-screen">
+        <Header />
+        <div className="w-100 bg-[url('')] ">
+          <DisplayRecipeHeader recipeName={currentRecipe.name} />
+          <div className="flex flex-row justify-center">
+            <RecipeImages Image={currentRecipe.images} />
+          </div>
+
+          <div className="flex flex-row justify-center gap-60 item-start m-10">
+            <DisplayIngredient ingredient={currentRecipe.ingredients} />
+            <div className="mx-20">
+              <DisplaySteps steps={currentRecipe.steps} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <p>Recipe Name: {currentRecipe.name}</p>
       <p>Keywords: {currentRecipe.keywords.join(", ")}</p>
       <p>Ingredients: {JSON.stringify(currentRecipe.ingredients)}</p>
       <p>Steps: {currentRecipe.steps.join(", ")}</p>
       <p>Images: {currentRecipe.images.join(", ")}</p>
+       */}
     </>
   );
 };

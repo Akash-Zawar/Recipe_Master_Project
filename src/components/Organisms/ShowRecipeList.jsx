@@ -4,16 +4,18 @@ const ShowRecipeList = () => {
   const showData = JSON.parse(localStorage.getItem("recipeData")) || [];
 
   return (
-    <div>
-      <p className="text-xl font-serif">List of recipes:- </p>
-      <div className="flex flex-row flex-wrap gap-3">
+    <div className="flex justify-center">
+      <div className="flex flex-row flex-wrap gap-10 my-10 w-2/3 justify-center ">
         {showData.map((field, index) => {
           return (
-            <Link key={index} to={`/recipes/recipe-details/${field.id}`}>
-              <div className="p-4 m-2 bg-slate-300 hover:bg-slate-500 w-52 text-center min-w-full">
+            <Link
+              key={index}
+              to={`/recipes/recipe-details/${encodeURIComponent(field.id)}`}>
+              <div className=" bg-slate-300 hover:bg-slate-500 text-center min-w-full">
                 <img
-                  src="https://toppng.com/uploads/preview/and-blank-effect-transparent-11546868080xgtiz6hxid.png"
+                  src={field.images[0].description}
                   alt="blank images"
+                  className="h-52 w-44"
                 />
                 <p>{field.name}</p>
               </div>

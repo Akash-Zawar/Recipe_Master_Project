@@ -10,6 +10,9 @@ const AddRecipeForm = () => {
   const [keywords, setKeywords] = useState([]);
   const [keywordValidation, setKeywordValidation] = useState(true);
 
+  const [categories, setCategories] = useState("");
+  const [categoriesValidation, setCategoriesValidation] = useState(true);
+
   const [steps, setSteps] = useState([]);
   const [stepValidation, setStepValidation] = useState(true);
 
@@ -23,6 +26,7 @@ const AddRecipeForm = () => {
     id: uuidv4(),
     name: recipeName,
     keywords: keywords,
+    categories: categories,
     ingredients: ingredients,
     steps: steps,
     images: images,
@@ -30,6 +34,11 @@ const AddRecipeForm = () => {
 
   const addName = (e) => {
     setRecipeName(e.target.value);
+    console.log({ recipeName });
+  };
+
+  const addCategory = (e) => {
+    setCategories(e.target.value);
     console.log({ recipeName });
   };
 
@@ -58,21 +67,38 @@ const AddRecipeForm = () => {
 
     if (
       keywords.length === 0 ||
-      keywords.some((keyword) => keyword.trim() == "")
+      keywords.some((key) => {
+        return !key.description;
+      })
     ) {
       setKeywordValidation(false);
       isValid = false;
     }
-    if (images.length === 0 || images.some((images) => images.trim() === "")) {
+    if (
+      images.length === 0 ||
+      images.some((key) => {
+        return !key.description;
+      })
+    ) {
       setImageValidation(false);
       isValid = false;
     }
-    if (steps.length === 0 || steps.some((steps) => steps.trim() === "")) {
+    if (
+      steps.length === 0 ||
+      steps.some((key) => {
+        return !key.description;
+      })
+    ) {
       setStepValidation(false);
       isValid = false;
     }
     if (recipeName.length === 0 || !isValidString(recipeName)) {
       setRecipeNameValidation(false);
+      isValid = false;
+    }
+
+    if (categories.length === 0 || !isValidString(categories)) {
+      setCategoriesValidation(false);
       isValid = false;
     }
 
@@ -92,6 +118,7 @@ const AddRecipeForm = () => {
       setStepValidation(true);
       setRecipeNameValidation(true);
       setIngredientValidation(true);
+      setCategoriesValidation(true);
     }
 
     return isValid;
@@ -111,13 +138,13 @@ const AddRecipeForm = () => {
   console.log({ recipeName, keywords, ingredients, steps, images });
 
   return (
-    <div className="flex flex-col gap-4 mx-2 my-2">
+    <div className="flex flex-col gap-4 py-5 mx-10 my-5 ">
       <div className="flex flex-row gap-10">
         <label> Name of Recipe </label>
         <input
           type="text"
           placeholder="Enter name of recipe"
-          className="border-solid border-2 mx-2 border-slate-950"
+          className="border-solid border-2 mx-2 border-slate-950 px-1"
           value={recipeName}
           onChange={addName}
         />
@@ -125,9 +152,23 @@ const AddRecipeForm = () => {
           <p style={{ color: "red" }}>Please enter valid recipe name.</p>
         )}
       </div>
-      <div>
+      <div className="flex flex-row gap-10">
+        <label> Category </label>
+        <input
+          type="text"
+          placeholder="Enter category"
+          className="border-solid border-2 mx-2 border-slate-950 px-1"
+          value={categories}
+          onChange={addCategory}
+        />
+        {!categoriesValidation && (
+          <p style={{ color: "red" }}>Please enter valid Category.</p>
+        )}
+      </div>
+      <div className="flex gap-5 items-start">
+        <p>Keywords</p>
         <AddInputFieldType1
-          btnName="Add keywords"
+          btnName="+"
           placeholder="Add keywords related to Recipe"
           data={keywords}
           passData={addKeywords}
@@ -138,9 +179,10 @@ const AddRecipeForm = () => {
           </p>
         )}
       </div>
-      <div>
+      <div className="flex gap-5 items-start">
+        <p>Ingredients</p>
         <AddInputFieldType2
-          btnName={["Add Ingredients"]}
+          btnName={["+"]}
           placeholder={[
             "Enter Name of Ingredient",
             "Enter Quantity",
@@ -156,9 +198,10 @@ const AddRecipeForm = () => {
           </p>
         )}
       </div>
-      <div>
+      <div className="flex gap-5 items-start">
+        <p>Steps</p>
         <AddInputFieldType1
-          btnName="Add Steps"
+          btnName="+"
           placeholder="Enter Step"
           data={steps}
           passData={addSteps}
@@ -167,9 +210,10 @@ const AddRecipeForm = () => {
           <p style={{ color: "red" }}>Please add at least one valid step.</p>
         )}
       </div>
-      <div>
+      <div className="flex gap-5 items-start">
+        <p>Images</p>
         <AddInputFieldType1
-          btnName="Add images"
+          btnName="+"
           placeholder="Enter Image link"
           data={images}
           passData={addImages}
