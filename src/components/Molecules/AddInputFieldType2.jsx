@@ -50,7 +50,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
         </button>
         <div className="flex flex-col gap-2 ">
           {inputFields.map((field, index) => (
-            <div key={index} className="flex flex-row gap-3 items-center">
+            <div key={index} className="flex flex-row gap-2 items-center">
               <input
                 type="text"
                 value={field.name}
@@ -60,7 +60,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "name", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-60 p-2"
+                className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 w-72"
               />
               <input
                 type="text"
@@ -71,7 +71,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "quantity", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-32 p-2"
+                className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 w-32"
               />
               <input
                 type="text"
@@ -82,7 +82,7 @@ const AddInputFieldType2 = ({ btnName, placeholder, data, passData }) => {
                     handleInputChange(index, "units", e.target.value);
                   }
                 }}
-                className="h-8 border-solid border-2 border-black w-32 p-2"
+                className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 w-32"
               />
               <button
                 onClick={() => removeInputField(index)}
