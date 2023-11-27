@@ -135,7 +135,7 @@ const AddRecipeForm = () => {
       getData.push(RecipeData);
       localStorage.setItem("recipeData", JSON.stringify(getData));
       console.log("Form submitted!");
-      toast("Form Submission Successful");
+      toast("Recipe Submitted Successfully");
       setFormSubmission(true);
       setTimeout(() => {
         setFormSubmission(false); // Hide the success message

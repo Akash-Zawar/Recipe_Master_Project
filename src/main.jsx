@@ -10,6 +10,8 @@ import HomePage from "./components/Templates/HomePage";
 import AboutUs from "./components/Templates/AboutUs";
 import ContactUs from "./components/Templates/ContactUs";
 import AdminDashboard from "./components/Templates/AdminDashboard";
+import { Provider } from "react-redux";
+import store from "./components/redux/store";
 
 const myRouter = createBrowserRouter([
   {
@@ -42,7 +44,7 @@ const myRouter = createBrowserRouter([
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.Fragment>
+  <Provider store={store}>
     <RouterProvider router={myRouter} />
-  </React.Fragment>
+  </Provider>
 );
