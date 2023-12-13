@@ -138,14 +138,7 @@ const AddRecipeForm = () => {
       toast("Recipe Submitted Successfully");
       setFormSubmission(true);
       setTimeout(() => {
-        setFormSubmission(false); // Hide the success message
-        // Reset the form state
-        setRecipeName("");
-        setKeywords([]);
-        setCategories("");
-        setSteps([]);
-        setImages([]);
-        setIngredients([{}]);
+        setFormSubmission(false);
       }, 3000);
     } else {
       console.log("error");
@@ -156,128 +149,133 @@ const AddRecipeForm = () => {
   console.log({ recipeName, keywords, ingredients, steps, images });
 
   return (
-    <div className="flex flex-col gap-4 py-5 mx-10">
-      <p className="text-3xl text-black font-bold">Add Recipe Form</p>
-      <div className="mt-4 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black ">
-          Name of Recipe
-        </label>
-        <input
-          type="text"
-          placeholder="Enter name of recipe"
-          className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 "
-          value={recipeName}
-          onChange={addName}
-        />
-        {!recipeNameValidation && (
-          <p style={{ color: "red" }}>Please enter valid recipe name.</p>
-        )}
-      </div>
-      <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black "> Category </label>
-        <input
-          type="text"
-          placeholder="Enter category"
-          className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950"
-          value={categories}
-          onChange={addCategory}
-        />
-        {!categoriesValidation && (
-          <p style={{ color: "red" }}>Please enter valid Category.</p>
-        )}
-      </div>
-      <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black ">Keywords</label>
-        <AddInputFieldType1
-          btnName="+"
-          placeholder="Add keywords related to Recipe"
-          data={keywords}
-          passData={addKeywords}
-        />
-        {!keywordValidation && (
-          <p style={{ color: "red" }}>
-            Please add at least one keyword or valid keyword.
-          </p>
-        )}
-      </div>
-      <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black ">
-          Ingredients
-        </label>
-        <AddInputFieldType2
-          btnName={["+"]}
-          placeholder={[
-            "Enter Name of Ingredient",
-            "Enter Quantity",
-            "Enter Units",
-          ]}
-          data={ingredients}
-          passData={addIngredients}
-        />
-        {!ingredientValidation && (
-          <p style={{ color: "red" }}>
-            Please add at least one valid ingredient set (Name, Quantity, and
-            Units).
-          </p>
-        )}
-      </div>
-      <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black ">Steps</label>
-        <AddInputFieldType1
-          btnName="+"
-          placeholder="Enter Step"
-          data={steps}
-          passData={addSteps}
-        />
-        {!stepValidation && (
-          <p style={{ color: "red" }}>Please add at least one valid step.</p>
-        )}
-      </div>
-      <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
-        <label className="pb-2 text-sm font-bold text-black ">Images</label>
-        <AddInputFieldType1
-          btnName="+"
-          placeholder="Enter Image link"
-          data={images}
-          passData={addImages}
-        />
-        {!imageValidation && (
-          <p style={{ color: "red" }}>
-            Please add at least one valid image link.
-          </p>
-        )}
-      </div>
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full"
-          onClick={handleSubmit}>
-          Submit
-        </button>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <Link to="/">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">
-            Go to Homepage
+    <>
+      <div className="flex flex-col gap-4 py-5 mx-10">
+        <p className="text-3xl text-black font-bold">Add Recipe Form</p>
+        <div className="mt-4 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">
+            Name of Recipe
+          </label>
+          <input
+            type="text"
+            placeholder="Enter name of recipe"
+            className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 "
+            value={recipeName}
+            onChange={addName}
+          />
+          {!recipeNameValidation && (
+            <p style={{ color: "red" }}>Please enter valid recipe name.</p>
+          )}
+        </div>
+        <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">
+            {" "}
+            Category{" "}
+          </label>
+          <input
+            type="text"
+            placeholder="Enter category"
+            className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950"
+            value={categories}
+            onChange={addCategory}
+          />
+          {!categoriesValidation && (
+            <p style={{ color: "red" }}>Please enter valid Category.</p>
+          )}
+        </div>
+        <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">Keywords</label>
+          <AddInputFieldType1
+            btnName="+"
+            placeholder="Add keywords related to Recipe"
+            data={keywords}
+            passData={addKeywords}
+          />
+          {!keywordValidation && (
+            <p style={{ color: "red" }}>
+              Please add at least one keyword or valid keyword.
+            </p>
+          )}
+        </div>
+        <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">
+            Ingredients
+          </label>
+          <AddInputFieldType2
+            btnName={["+"]}
+            placeholder={[
+              "Enter Name of Ingredient",
+              "Enter Quantity",
+              "Enter Units",
+            ]}
+            data={ingredients}
+            passData={addIngredients}
+          />
+          {!ingredientValidation && (
+            <p style={{ color: "red" }}>
+              Please add at least one valid ingredient set (Name, Quantity, and
+              Units).
+            </p>
+          )}
+        </div>
+        <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">Steps</label>
+          <AddInputFieldType1
+            btnName="+"
+            placeholder="Enter Step"
+            data={steps}
+            passData={addSteps}
+          />
+          {!stepValidation && (
+            <p style={{ color: "red" }}>Please add at least one valid step.</p>
+          )}
+        </div>
+        <div className="mt-2 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
+          <label className="pb-2 text-sm font-bold text-black ">Images</label>
+          <AddInputFieldType1
+            btnName="+"
+            placeholder="Enter Image link"
+            data={images}
+            passData={addImages}
+          />
+          {!imageValidation && (
+            <p style={{ color: "red" }}>
+              Please add at least one valid image link.
+            </p>
+          )}
+        </div>
+        <div>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full"
+            onClick={handleSubmit}>
+            Submit
           </button>
-        </Link>
-      </div>
-      {/* <div>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+          <Link to="/">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-2 rounded-full">
+              Go to Homepage
+            </button>
+          </Link>
+        </div>
+        {/* <div>
         {formSubmission && (
           // <p style={{ color: "blue" }}>Form Sumbitted Successfully</p>
           
         )}
       </div> */}
-    </div>
+      </div>
+    </>
   );
 };
 

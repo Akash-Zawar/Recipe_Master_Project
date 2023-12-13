@@ -12,6 +12,7 @@ import ContactUs from "./components/Templates/ContactUs";
 import AdminDashboard from "./components/Templates/AdminDashboard";
 import { Provider } from "react-redux";
 import store from "./components/redux/store";
+import EditRecipeDetails from "./components/Organisms/editRecipeDetails";
 
 const myRouter = createBrowserRouter([
   {
@@ -39,8 +40,12 @@ const myRouter = createBrowserRouter([
     element: <ListRecipeSection />,
   },
   {
-    path: "/recipes/recipe-details/:id",
+    path: "/recipe-details/:id",
     element: <DisplayRecipe />,
+  },
+  {
+    path: "/edit-recipe-details/:id",
+    element: <EditRecipeDetails />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

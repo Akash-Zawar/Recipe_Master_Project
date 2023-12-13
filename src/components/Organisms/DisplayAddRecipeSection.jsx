@@ -1,8 +1,10 @@
+import HeaderV2 from "../../assets/Header/headerV2";
 import AddRecipeForm from "./AddRecipeForm";
 
 const DisplayAddRecipeSection = () => {
   return (
     <>
+      <HeaderV2 />
       <div
         className="bg-cover bg-center h-screen"
         style={{

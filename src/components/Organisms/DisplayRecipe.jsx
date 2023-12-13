@@ -1,27 +1,28 @@
 import { useParams } from "react-router-dom";
 import DisplayRecipeHeader from "./DisplayRecipeComponents/DisplayRecipeHeader";
-import Header from "./header";
+
 import DisplayIngredient from "./DisplayRecipeComponents/DisplayIngredient";
 import RecipeImages from "./DisplayRecipeComponents/RecipeImages";
 import DisplaySteps from "./DisplayRecipeComponents/DisplaySteps";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getRecipeData } from "./Slice/showRecipe.Slice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { getRecipeData } from "./Slice/showRecipe.Slice";
+import HeaderV2 from "../../assets/Header/headerV2";
 
 const DisplayRecipe = () => {
   const params = useParams();
   let recipeID = decodeURIComponent(params.id);
   console.log({ recipeID });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const showData = JSON.parse(localStorage.getItem("recipeData")) || [];
 
-  const data = useSelector((state) => state.recipeData);
+  // const data = useSelector((state) => state.recipeData);
 
-  useEffect(() => {
-    dispatch(getRecipeData(recipeID));
-  }, [recipeID, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getRecipeData(recipeID));
+  // }, [recipeID, dispatch]);
 
-  console.log("data from display recipe", data);
+  // console.log("data from display recipe", data);
 
   let currentRecipe = {};
 
@@ -33,9 +34,9 @@ const DisplayRecipe = () => {
   console.log({ currentRecipe });
 
   return (
-    <>
-      <div className="bg-slate-100 h-screen">
-        <Header />
+    <div className="">
+      <HeaderV2 />
+      <div>
         <div className="w-100 bg-[url('')] ">
           <DisplayRecipeHeader recipeName={currentRecipe.name} />
           <div className="flex flex-row justify-center">
@@ -57,7 +58,7 @@ const DisplayRecipe = () => {
       <p>Steps: {currentRecipe.steps.join(", ")}</p>
       <p>Images: {currentRecipe.images.join(", ")}</p>
        */}
-    </>
+    </div>
   );
 };
 

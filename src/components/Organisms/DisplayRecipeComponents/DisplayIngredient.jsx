@@ -2,7 +2,7 @@ const DisplayIngredient = ({ ingredient }) => {
   console.log(ingredient);
   return (
     <div>
-      <p className="text-2xl m-0">List of ingredients :- </p>
+      <p className="text-2xl m-0">List of ingredients : </p>
       <ul>
         {ingredient.map((field, index) => {
           return (

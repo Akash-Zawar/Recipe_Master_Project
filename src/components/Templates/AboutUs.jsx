@@ -1,10 +1,9 @@
-import React from "react";
-import Header from "../Organisms/header";
+import HeaderV2 from "../../assets/Header/headerV2";
 
 const AboutUs = () => {
   return (
     <div>
-      <Header />
+      <HeaderV2 />
       <div>AboutUs</div>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae
