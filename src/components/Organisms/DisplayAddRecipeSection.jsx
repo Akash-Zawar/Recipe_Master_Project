@@ -1,24 +1,17 @@
+import HeaderV2 from "../../assets/Header/headerV2";
 import AddRecipeForm from "./AddRecipeForm";
-
-import { Link } from "react-router-dom";
-import Header from "./header";
 
 const DisplayAddRecipeSection = () => {
   return (
     <>
-      <Header />
-      <div className="flex flex-row">
-        <div className="bg-sky-400 w-80 h-screen">
-          <button className="border-b-2 w-full p-2 bg-sky-700 ">
-            Add Recipe
-          </button>
-          <Link to="/recipes">
-            <button className="border-b-2 w-full p-2 hover:bg-sky-700 ">
-              Show Recipe
-            </button>
-          </Link>
-        </div>
-        <div className="bg-slate-50 h-screen w-10/12">
+      <HeaderV2 />
+      <div
+        className="bg-cover bg-center h-screen"
+        style={{
+          backgroundImage: `url(https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHJlY2lwZSUyMGJvb2t8ZW58MHx8MHx8fDA%3D)`,
+          transform: "scaleX(-1)",
+        }}>
+        <div style={{ transform: "scaleX(-1)" }}>
           <AddRecipeForm />
         </div>
       </div>

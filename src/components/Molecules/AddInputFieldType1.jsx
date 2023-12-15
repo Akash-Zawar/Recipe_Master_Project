@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 const AddInputFieldType1 = ({ btnName, placeholder, data, passData }) => {
-  const [inputFields, setInputFields] = useState([""]);
+  const [inputFields, setInputFields] = useState([{ description: "" }]);
 
   const AddInputField = () => {
-    setInputFields([...inputFields, ""]);
+    setInputFields([...inputFields, { description: "" }], [data]);
   };
 
-  const handleInputChange = (index, event) => {
+  const handleInputChange = (index, key, event) => {
     const newInputFields = [...inputFields];
-    newInputFields[index] = event.target.value;
+    newInputFields[index][key] = event.target.value;
     setInputFields(newInputFields);
     passData(newInputFields);
   };
@@ -24,26 +24,28 @@ const AddInputFieldType1 = ({ btnName, placeholder, data, passData }) => {
 
   return (
     <div>
-      <div className="flex flex-col items-start">
+      <div className="flex flex-row  items-start">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white text-s font-bold py-2 px-4 rounded my-2 px-2 h-9"
+          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-1 border border-blue-500 hover:border-transparent rounded h-8"
           onClick={AddInputField}>
           {btnName}
         </button>
-        <div className="flex flex-col gap-2 m-3  ">
+        <div className="flex flex-col gap-2 mx-3">
           {inputFields.map((field, index) => (
-            <div key={index} className="flex flex-row gap-3  m-2 items-center">
+            <div key={index} className="flex flex-row gap-2 mx-2 items-center">
               <input
                 type="text"
-                value={field}
+                value={field.description}
                 placeholder={placeholder}
-                onChange={(event) => handleInputChange(index, event)}
-                className="h-8 border-solid border-2 border-black w-96"
+                onChange={(event) =>
+                  handleInputChange(index, "description", event)
+                }
+                className="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm rounded text-sm focus:outline-none focus:border-indigo-700 bg-transparent placeholder-gray-500 text-gray-950 w-96"
               />
               <button
                 onClick={() => removeInputField(index)}
-                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white p-1 border border-blue-500 hover:border-transparent rounded h-8">
-                Remove
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white px-1 border border-blue-500 hover:border-transparent rounded h-8">
+                X
               </button>
             </div>
           ))}
